@@ -1,0 +1,62 @@
+:root {
+    --color1: #2B3554;
+    --color2: #63D2B2;
+    --color3: #5567AD;
+    --color4: #95E1E4;
+    --color5: #ffffff;
+}
+
+@font-face {
+    font-family: 'Montserrat-Bold';
+    src: url('../assets/fonts/Montserrat-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color3);
+    color: var(--primary-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    border: #777 2px solid;
+    background: var(--color5);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+}
+
+h1 {
+    color: var(--color1);
+    font-weight: bold;
+    text-shadow: 2px 2px 3px #aaa;
+    font-family: "Montserrat-Bold";
+}
+
+.menu .btn {
+    background-color: var(--color2);
+    color: var(--color1);
+    border: none;
+    padding: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.menu .btn:hover {
+    background-color: var(--color4);
+    color: var(--color1);
+}

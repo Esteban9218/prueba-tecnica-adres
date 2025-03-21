@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Adquisiciones</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="./css/consulta.css">
+
+    <!-- noUiSlider CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css">
+
+
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar de Filtros -->
+            <aside class="col-md-3 p-4 filtros-sidebar">
+                <h4>Filtros</h4>
+
+                <div class="accordion mt-4" id="accordionPanel">
+                    <!-- Rango de Presupuesto -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panel1" aria-expanded="false" aria-controls="panel1">
+                                Presupuesto
+                            </button>
+                        </h2>
+                        <div id="panel1" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div id="sliderPresupuesto" class="mb-3 slider"></div>
+                                <div class="d-flex justify-content-between align-items-center mx-auto w-100">
+                                    <div class="input-group flex-nowrap w-auto">
+                                        <span class="input-group-text">$</span>
+                                        <input type="number" class="form-control text-end" id="presupuestoMin"
+                                            style="width: 120px;">
+                                    </div>
+                                    <div class="input-group flex-nowrap w-auto">
+                                        <span class="input-group-text">$</span>
+                                        <input type="number" class="form-control text-end" id="presupuestoMax"
+                                            style="width: 120px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filtro por Unidad -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panel2" aria-expanded="false" aria-controls="panel2">
+                                Unidad Administrativa
+                            </button>
+                        </h2>
+                        <div id="panel2" class="accordion-collapse collapse">
+                            <div class="accordion-body" id="listaUnidad">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filtro por Tipo de Bien o Servicio -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panel3" aria-expanded="false" aria-controls="panel3">
+                                Tipo de Bien o Servicio
+                            </button>
+                        </h2>
+                        <div id="panel3" class="accordion-collapse collapse">
+                            <div class="accordion-body" id="listaTipo">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rango de Valor Total -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panel4" aria-expanded="false" aria-controls="panel4">
+                                Valor Total
+                            </button>
+                        </h2>
+                        <div id="panel4" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div id="sliderValortotal" class="mb-3 slider"></div>
+                                <div class="d-flex justify-content-between align-items-center mx-auto w-100">
+                                    <div class="input-group flex-nowrap w-auto">
+                                        <span class="input-group-text">$</span>
+                                        <input type="number" class="form-control text-end" id="valortotalMin"
+                                            style="width: 120px;">
+                                    </div>
+                                    <div class="input-group flex-nowrap w-auto">
+                                        <span class="input-group-text">$</span>
+                                        <input type="number" class="form-control text-end" id="valortotalMax"
+                                            style="width: 120px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filtro por Proveedor -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panel5" aria-expanded="false" aria-controls="panel5">
+                                Proveedor
+                            </button>
+                        </h2>
+                        <div id="panel5" class="accordion-collapse collapse">
+                            <div class="accordion-body" id="listaProveedor">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rango de Fecha de Adquisición -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panel6" aria-expanded="false" aria-controls="panel6">
+                                Fecha de Adquisición
+                            </button>
+                        </h2>
+                        <div id="panel6" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div class="d-flex justify-content-between mx-auto w-100">
+                                    <div>
+                                        <span for="fechaAdqInicio">desde</span>
+                                        <input type="date" id="fechaAdqInicio" class="form-control">
+                                    </div>
+                                    <div>
+                                        <span for="fechaAdqFin"> hasta</span>
+                                        <input type="date" id="fechaAdqFin" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rango de Fecha de Modificación -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panel7" aria-expanded="false" aria-controls="panel7">
+                                Fecha de Modificación
+                            </button>
+                        </h2>
+                        <div id="panel7" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div class="d-flex justify-content-between mx-auto w-100">
+                                    <div>
+                                        <span for="fechaAdqInicio">desde</span>
+                                        <input type="date" id="fechaModInicio" class="form-control">
+                                    </div>
+                                    <div>
+                                        <span for="fechaAdqFin"> hasta</span>
+                                        <input type="date" id="fechaModFin" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Botón Aplicar Filtros -->
+                <button class="btn btn-primary w-100 mt-4" id="btnAplicarFiltros">Aplicar Filtros</button>
+
+                <!-- Botón Volver a menú inicial -->
+                <a href="./" class="btn btn-secondary w-100 mt-4">Volver al Inicio</a>
+
+            </aside>
+
+            <!-- Contenido Principal -->
+            <main class="col-md-9 p-4">
+                <h2>Consulta de Adquisiciones</h2>
+                <table class="table table-striped mt-4">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Presupuesto</th>
+                            <th>Unidad Administrativa</th>
+                            <th>Bien/Servicio</th>
+                            <th>Valor Total</th>
+                            <th>Proveedor</th>
+                            <th>Fecha<br>Adquisición</th>
+                            <th>Fecha<br>Modificación</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultadosTabla">
+                        <!-- Aquí se insertarán dinámicamente los resultados -->
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+
+
+    <!-- Modal para Ver/Editar Registro -->
+    <div class="modal fade" id="modalAdquisicion" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Detalles de Adquisición</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEditarAdquisicion">
+                        <!-- <div class="mb-3">
+                            <label for="editPresupuesto" class="form-label">Presupuesto ($)</label>
+                            <input type="number" class="form-control" id="editPresupuesto">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editUnidad" class="form-label">Unidad Administrativa</label>
+                            <input type="text" class="form-control" id="editUnidad">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProveedor" class="form-label">Proveedor</label>
+                            <input type="text" class="form-control" id="editProveedor">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editFecha" class="form-label">Fecha de Adquisición</label>
+                            <input type="date" class="form-control" id="editFecha">
+                        </div> -->
+                        <div class="mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-custom-class="custom-tooltip" title="Monto total asignado para la adquisición.">
+                            <label for="presupuesto" class="form-label">Presupuesto</label>
+                            <span class="input-group mb-3">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" id="editPresupuesto" required
+                                    placeholder="Ej. $10.000.000">
+                            </span>
+                        </div>
+
+                        <div class="mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-custom-class="custom-tooltip" title="Administrativa responsable.">
+                            <label for="unidad" class="form-label">Unidad</label>
+                            <input type="text" class="form-control" id="editUnidad" required
+                                placeholder="Ej. Dirección de Medicamentos y Tecnologías en Salud">
+                        </div>
+
+                        <div class="mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-custom-class="custom-tooltip" title="Descripción.">
+                            <label for="tipo" class="form-label">Tipo de Bien o Servicio</label>
+                            <input type="text" class="form-control" id="editTipo" required
+                                placeholder="Ej. Medicamentos">
+                        </div>
+
+                        <div class="mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-custom-class="custom-tooltip" title="Número de unidades.">
+                            <label for="cantidad" class="form-label">Cantidad</label>
+                            <input type="number" class="form-control" id="editCantidad" required
+                                placeholder="Ej. 10.000 unidades">
+                        </div>
+
+                        <div class="mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-custom-class="custom-tooltip" title="Costo por unidad.">
+                            <label for="valorUnitario" class="form-label">Valor Unitario</label>
+                            <span class="input-group mb-3">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" id="editValorUnitario" required
+                                    placeholder="Ej. $1.000">
+                            </span>
+                        </div>
+
+                        <div class="mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-custom-class="custom-tooltip" title="Costo total.">
+                            <label for="valorTotal" class="form-label">Valor Total</label>
+                            <span class="input-group mb-3">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" id="editValorTotal" readonly>
+                            </span>
+                        </div>
+
+                        <div class="mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-custom-class="custom-tooltip" title="Fecha de la adquisición">
+                            <label for="fecha" class="form-label">Fecha de Adquisición</label>
+                            <input type="date" class="form-control" id="editFecha" required>
+                        </div>
+
+                        <div class="mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-custom-class="custom-tooltip" title="Entidad proveedora.">
+                            <label for="proveedor" class="form-label">Proveedor</label>
+                            <input type="text" class="form-control" id="editProveedor" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelarModal"
+                        data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="guardarCambios">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+
+    <script src="./js/api.js"></script>
+    <script src="./js/consulta.js"></script>
+</body>
+
+</html>

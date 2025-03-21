@@ -1,0 +1,185 @@
+:root {
+    --color1: #2B3554;
+    --color2: #63D2B2;
+    --color3: #5567AD;
+    --color4: #95E1E4;
+    --color5: #ffffff;
+}
+
+body {
+    background-color: var(--color3);
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    color: var(--color2);
+}
+
+h5 {
+    color: var(--color2);
+}
+
+.card {
+    background: var(--color5);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filtros-sidebar {
+    background: var(--color5);
+    border-right: 2px solid #CCC;
+    min-height: 100vh;
+    height: 100%;
+}
+
+.filtros-sidebar h4 {
+    color: var(--color1);
+    font-weight: bold;
+}
+
+
+.btn {
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--color1);
+}
+
+.btn-primary:hover {
+    background-color: var(--color4);
+    color: darkgrey;
+    color: var(--color1);
+}
+
+.btn-primary:active {
+    background-color: var(--color4);
+    color: darkgrey;
+}
+
+.btn-secondary {
+    background-color: var(--color2);
+    color: var(--color5);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color4);
+    color: darkgrey;
+    color: var(--color1);
+}
+
+.btn-secondary:active {
+    background-color: var(--color4);
+    color: darkgrey;
+}
+
+.table {
+    background: var(--color5);
+}
+
+thead {
+    vertical-align: middle !important;
+}
+
+.btn-icon {
+    color: white;
+}
+
+.btn-info {
+    background-color: var(--color1);
+}
+
+.btn-info:hover {
+    background-color: var(--color4);
+}
+
+.btn-info:active {
+    background-color: var(--color4);
+}
+
+.btn-warning {
+    background-color: var(--color2);
+}
+
+.btn-warning:hover {
+    background-color: var(--color4);
+}
+
+.btn-warning:active {
+    background-color: var(--color4);
+}
+
+
+
+main {
+    overflow-x: auto;
+}
+
+.accordion-button {
+    font-weight: bold;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--color4) !important;
+    color: white;
+}
+
+.accordion-button:focus {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+/* Estilos para el slider */
+.noUi-target {
+    background: var(--color5);
+    border-radius: 8px;
+    border: 2px solid var(--color3);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.noUi-connect {
+    background: var(--color2);
+}
+
+.noUi-handle {
+    background: var(--color1);
+    /* Color principal */
+    border: 3px solid var(--color5);
+    /* Borde blanco */
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50% !important;
+    /* Hace que sea completamente circular */
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.noUi-handle:hover {
+    transform: scale(1.1);
+}
+
+.noUi-handle:active {
+    transform: scale(1.15);
+}
+
+.noUi-base {}
+
+.noUi-tooltip {
+    background: var(--color1);
+    color: var(--color5);
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.slider {
+    height: 10px !important;
+    background: var(--color4) !important;
+    border-radius: 5px !important;
+    margin-top: 10px !important;
+}
